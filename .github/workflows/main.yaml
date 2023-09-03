@@ -83,8 +83,6 @@ jobs:
 
   cd:
 
-    if: github.event_name != 'pull_request'
-
     needs: ci
 
     permissions:
