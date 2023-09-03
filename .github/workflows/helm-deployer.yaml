@@ -82,11 +82,15 @@ jobs:
 
             const pr_number = after_last_slash.split('-')[1]
 
+            console.log(pr_number)
+
             const pr = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr_number,
             });
+
+            console.log(pr.data)
 
             branch_name = `${pr.data.head.ref}-${context.repo.repo}${process.env.suffix}`
             pr_url = pr.data.html_url
