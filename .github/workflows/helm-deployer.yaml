@@ -89,7 +89,7 @@ jobs:
             });
 
             branch_name = `${pr.data.head.ref}-${context.repo.repo}${process.env.suffix}`
-            pr_url = ${pr.data.html_url}
+            pr_url = pr.data.html_url
             commit_url = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.payload.merge_group.head_sha}`
             
           } else if (context.eventName === 'push') {
