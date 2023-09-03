@@ -102,6 +102,7 @@ jobs:
       cluster: ${{ github.event_name == 'merge_group' && 'my-cluster' || 'main-cluster' }}
       namespace: namespace01
       artifact_name: ${{ github.event_name == 'merge_group' && 'internal-gitops' || 'rendered-helmreleases' }}
+      execute: ${{ github.event_name != 'pull_request' }}
 
     secrets:
       token: ${{ secrets.FLUX_REPO_TOKEN }}

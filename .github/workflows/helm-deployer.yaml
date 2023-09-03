@@ -21,15 +21,21 @@ on:
         type: string
         description: artifact name
         default: 'rendered-helmreleases'
+      execute:
+        type: boolean
+        description: whether to execute the helm deployer job or not
     secrets:
       token:
         required: true
         description: Token to access flux repo
+
       
 
 jobs:
 
   helm-deployer:
+
+    if: inputs.execute == true
 
     defaults:
       run:
