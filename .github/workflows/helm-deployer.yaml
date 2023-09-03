@@ -88,9 +88,7 @@ jobs:
 
             console.log(branch_ref)
 
-            const after_last_slash_regex = /[^/]*$/.exec(branch_ref)
-
-            const after_last_slash = after_last_slash_regex[0]
+            const after_last_slash = /[^/]*$/.exec(branch_ref)[0]
 
             const pr_number = after_last_slash.split('-')[1]
 
@@ -166,7 +164,6 @@ jobs:
           core.info('Outputs branch_name, pr_url, and commit_url have been generated successfully')
 
     - name: 'Copy files to proper route'
-      if: github.event_name != 'push'
       id: copy_file
       env:
         MICROSERVICE: ${{ github.repository }}
