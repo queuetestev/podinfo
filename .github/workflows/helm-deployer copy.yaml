@@ -21,6 +21,9 @@ on:
         type: string
         description: artifact name
         default: 'rendered-helmreleases'
+      execute:
+        type: boolean
+        description: whether to execute the helm deployer job or not
     secrets:
       token:
         required: true
@@ -30,6 +33,8 @@ on:
 jobs:
 
   helm-deployer:
+
+    if: inputs.execute == true
 
     defaults:
       run:
@@ -86,7 +91,7 @@ jobs:
             });
 
             branch_name = `${pr.data.head.ref}-${context.repo.repo}${process.env.suffix}`
-            pr_url = ${pr.data.html_url}
+            pr_url = pr.data.html_url
             commit_url = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.payload.merge_group.head_sha}`
             
           } else if (context.eventName === 'push') {
@@ -143,7 +148,7 @@ jobs:
 
           core.setOutput('branch_name', branch_name)
           core.setOutput('pr_url', pr_url)
-          core.setOutput('commit_url',`${commit_info.data.html_url}`)
+          core.setOutput('commit_url', commit_url)
           core.info('Outputs branch_name, pr_url, and commit_url have been generated successfully')
 
     - name: 'Copy files to proper route'
