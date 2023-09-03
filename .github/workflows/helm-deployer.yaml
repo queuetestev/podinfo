@@ -146,7 +146,7 @@ jobs:
 
           core.setOutput('branch_name', branch_name)
           core.setOutput('pr_url', pr_url)
-          core.setOutput('commit_url',`${commit_info.data.html_url}`)
+          core.setOutput('commit_url',commit_url)
           core.info('Outputs branch_name, pr_url, and commit_url have been generated successfully')
 
     - name: 'Copy files to proper route'
