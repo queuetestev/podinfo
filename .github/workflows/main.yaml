@@ -46,7 +46,7 @@ jobs:
 
     - uses: cschleiden/replace-tokens@v1
       with:
-        files: '["internal/*.yaml"]'
+        files: '["internal/*.yaml","templates/*.yaml"]'
       env:
         version: 3 #for us this would be output release from version job
         prcommit: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
@@ -54,7 +54,7 @@ jobs:
     - uses: ./.github/actions/helm-composer
 
     - name: 'Skip flux notification check status'
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'nothing'
       uses: actions/github-script@v6
       with:
         retries: 3
