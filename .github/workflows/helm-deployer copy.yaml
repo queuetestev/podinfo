@@ -75,7 +75,7 @@ jobs:
 
             const branch_ref = context.payload.merge_group.head_ref
 
-            const after_last_slash = /'[^/]*$'/.exec(branch_ref)[0]
+            const after_last_slash = /[^/]*$/.exec(branch_ref)[0]
 
             const pr_number = after_last_slash.split('-')[1]
 

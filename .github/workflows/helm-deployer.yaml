@@ -82,7 +82,7 @@ jobs:
 
             console.log(branch_ref)
 
-            const after_last_slash_regex = /'[^/]*$'/.exec(branch_ref)
+            const after_last_slash_regex = /[^/]*$/.exec(branch_ref)
 
             const after_last_slash = after_last_slash_regex[0]
 
