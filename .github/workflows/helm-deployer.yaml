@@ -76,7 +76,11 @@ jobs:
 
           if (context.eventName === 'merge_group'){
 
+            console.log('hola')
+
             const branch_ref = context.payload.merge_group.head_ref
+
+            console.log(branch_ref)
 
             const after_last_slash_regex = /'[^/]*$'/.exec(branch_ref)[0]
 
