@@ -13,7 +13,7 @@ for end-to-end testing and workshops.
 Specifications:
 
 * Health checks (readiness and liveness)
-* Graceful shutdown on interrupt signals
+* Graceful shutdown on interrupt signalst
 * File watcher for secrets and configmaps
 * Instrumented with Prometheus and Open Telemetry
 * Structured logging with zap 
