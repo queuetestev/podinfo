@@ -186,7 +186,7 @@ jobs:
         MICROSERVICE="${MICROSERVICE##*/}"
         cp ${MICROSERVICE}-* clusters/"${CLUSTER}"/"${NAMESPACE}"/
         rm ${MICROSERVICE}-*
-        rm -f merge_commit_sha rm pr_number
+        rm -f merge_commit_sha pr_number
 
     - name: 'Create Pull Request'
       uses: peter-evans/create-pull-request@v5
