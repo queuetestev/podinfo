@@ -154,7 +154,19 @@ jobs:
 
               commit_url = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
 
-            } 
+            } else {
+
+              const fs = require('fs')
+
+              if(fs.existsSync('pr_number')){
+                pr_url = `https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${fs.readFileSync('pr_number','utf8')}`
+              }
+
+              if(fs.existsSync('merge_commit_sha')){
+                commit_url = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${fs.readFileSync('merge_commit_sha','utf8')}`
+              }
+
+            }
             
           }
 
@@ -174,6 +186,7 @@ jobs:
         MICROSERVICE="${MICROSERVICE##*/}"
         cp ${MICROSERVICE}-* clusters/"${CLUSTER}"/"${NAMESPACE}"/
         rm ${MICROSERVICE}-*
+        rm -f merge_commit_sha rm pr_number
 
     - name: 'Create Pull Request'
       uses: peter-evans/create-pull-request@v5

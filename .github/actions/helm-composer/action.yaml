@@ -15,6 +15,8 @@ runs:
       shell: bash
       env:
         MICROSERVICE: ${{ github.repository }}
+        MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
       run: |
         shopt -s extglob
         mkdir rendered_templates
@@ -23,8 +25,14 @@ runs:
         for d in templates/!(base)/   
         do
           ENVIRONMENT=$(basename "$d")
-          kubectl kustomize "$d" >> rendered_templates/"${MICROSERVICE}"-release-"$ENVIRONMENT".yaml
+          kubectl kustomize "$d" > rendered_templates/"${MICROSERVICE}"-release-"$ENVIRONMENT".yaml
         done
+
+        if [${GITHUB_EVENT_NAME} = 'pull_request']
+        then
+          echo "${PR_NUMBER}" > rendered_templates/pr_number
+          echo "${MERGE_COMMIT_SHA}" > rendered_templates/merge_commit_sha
+        fi
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
