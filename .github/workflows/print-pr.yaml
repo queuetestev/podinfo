@@ -60,3 +60,17 @@ jobs:
           });
 
           console.log(JSON.stringify(pr8.data))
+    - name: 'Print workflow runs'
+      uses: actions/github-script@v6
+      with:
+        retries: 3
+        script: |
+
+          const workflow = await github.rest.actions.listWorkflowRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'print-pr.yaml',
+          });
+
+          console.log(JSON.stringify(workflow.data))
+
