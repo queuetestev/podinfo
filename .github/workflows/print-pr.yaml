@@ -39,7 +39,7 @@ jobs:
         retries: 3
         script: |
 
-          const pr4 = await octokit.rest.pulls.get({
+          const pr4 = await github.rest.pulls.get({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: 4,
@@ -53,7 +53,7 @@ jobs:
         retries: 3
         script: |
 
-          const pr8 = await octokit.rest.pulls.get({
+          const pr8 = await github.rest.pulls.get({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: 8,
