@@ -23,7 +23,7 @@ on:
         default: 'rendered-helmreleases'
       execute:
         type: boolean
-        description: whether to execute the helm deployer job or not
+        description: whether to execute the helm deployer job or not (due to merge queue restrictions)
     secrets:
       token:
         required: true

@@ -185,10 +185,3 @@ jobs:
         body: ${{ format('Automatic HelmRelease CRD updating via {0} repository event.{1}{2}', github.repository, steps.branch_naming.outputs.pr_url != '' && format(' [Associated PR]({0}).', steps.branch_naming.outputs.pr_url ) || '',  steps.branch_naming.outputs.commit_url != '' && format(' [Associated Commit]({0}).', steps.branch_naming.outputs.commit_url) || '') }}
         title: ${{ steps.branch_naming.outputs.branch_name }}
         branch: ${{ steps.branch_naming.outputs.branch_name }}
-        delete-branch: true
-
-
-
-  
-
-
